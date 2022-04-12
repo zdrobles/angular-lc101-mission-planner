@@ -7,9 +7,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EquipmentComponent implements OnInit {
 
+  crew: string[] = [
+    'Habitat dome',
+    'Drones',
+    'Food containers',
+    'Oxygen tanks',
+  ];
+
+  memberBeingEdited: string = null;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  add(memberName: string) {
+    if (!this.crew.includes(memberName)) {
+      this.crew.push(memberName);
+    }
+  }
+
+  remove(member: string) {
+    let index = this.crew.indexOf(member);
+    this.crew.splice(index, 1);
+  }
+
+  edit(member: string) {
+    this.memberBeingEdited = member;
+  }
+
+  save(name: string, member: string) {
+    this.crew[this.crew.indexOf(member)] = name;
+    this.memberBeingEdited = null;
   }
 
 }

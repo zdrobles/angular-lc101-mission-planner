@@ -1,6 +1,20 @@
 <h3>Experiments</h3>
 <ul>
-  <li>Mars soil sample</li>
-  <li>Plant growth in habitat</li>
-  <li>Human bone density</li>
+  <li *ngFor="let member of crew">
+
+    <span *ngIf="memberBeingEdited !== member; else elseBlock">
+      <!-- display state of member -->
+      <span (click)="edit(member)" class="editable-text">{{member}}</span>
+      <button (click)="remove(member)">remove</button>
+    </span>
+
+    <ng-template #elseBlock>
+      <!-- edit state of member -->
+      <input #updatedName (keyup.enter)="save(updatedName.value, member)" value="{{member}}" />
+      <button (click)="save(updatedName.value, member)">save</button>
+    </ng-template>
+
+  </li>
 </ul>
+<input #name type="text" />
+<button (click)="add(name.value)">Add</button>
