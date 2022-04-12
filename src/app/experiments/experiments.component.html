@@ -17,4 +17,4 @@
   </li>
 </ul>
 <input #name type="text" />
-<button (click)="add(name.value)">Add</button>
+<button (click)="add(name.value); name.value = '';">Add</button>

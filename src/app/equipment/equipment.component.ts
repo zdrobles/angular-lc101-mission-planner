@@ -22,7 +22,7 @@ export class EquipmentComponent implements OnInit {
   }
 
   add(memberName: string) {
-    if (!this.crew.includes(memberName)) {
+    if (!this.crew.includes(memberName) && memberName != '') {
       this.crew.push(memberName);
     }
   }
@@ -36,9 +36,14 @@ export class EquipmentComponent implements OnInit {
     this.memberBeingEdited = member;
   }
 
+
   save(name: string, member: string) {
-    this.crew[this.crew.indexOf(member)] = name;
-    this.memberBeingEdited = null;
+    if (name != '') {
+      this.crew[this.crew.indexOf(member)] = name;
+      this.memberBeingEdited = null;
+    } else {
+      this.remove(member);
+    }
   }
 
 }

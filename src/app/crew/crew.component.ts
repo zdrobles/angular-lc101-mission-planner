@@ -21,7 +21,7 @@ export class CrewComponent implements OnInit {
   }
 
   add(memberName: string, isFirst: boolean) {
-    if (!this.crew.some(e => e.name === memberName)) {
+    if (!this.crew.some(e => e.name === memberName) && memberName != '') {
       this.crew.push({ name: memberName, firstMission: isFirst });
     }
   }
@@ -36,7 +36,11 @@ export class CrewComponent implements OnInit {
   }
 
   save(name: string, member: object) {
-    member['name'] = name;
-    this.memberBeingEdited = null;
+    if (name != '') {
+      member['name'] = name;
+      this.memberBeingEdited = null;
+    } else {
+      this.remove(member);
+    }
   }
 }
