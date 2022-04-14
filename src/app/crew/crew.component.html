@@ -17,5 +17,13 @@
             {{astronaut['name']}}</li>
     </ol>
     <!-- Add an img tag here to display astronaut photos. -->
-    <img *ngIf="selected" src="{{selected['photo']}}" alt="{{selected['name']}}">
+    <div id="photoArea" *ngIf="selected">
+        <img src="{{selected['photo']}}" alt="{{selected['name']}}"><br>
+        <p *ngIf="selected['active']; else notActive">Active</p>
+        <ng-template #notActive>
+            <p [style.color]="'red'">Not Active</p>
+        </ng-template>
+    </div>
+
+
 </div>
